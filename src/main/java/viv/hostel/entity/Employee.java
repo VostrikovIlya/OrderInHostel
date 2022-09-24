@@ -1,6 +1,6 @@
 package viv.hostel.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -8,23 +8,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
-
-@Getter
 @Setter
+@Getter
 @Entity
-public class User implements UserDetails {
+public class Employee implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Long id;
-
-    @NotEmpty
-    private String numberContract;
 
     @NotEmpty
     @Size(min = 3)
@@ -38,13 +32,6 @@ public class User implements UserDetails {
 
     private String lastName;
 
-    @Email
-    private String email;
-
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room numberRoom;
-
     private String phone;
 
     @ColumnDefault("true")
@@ -53,9 +40,10 @@ public class User implements UserDetails {
     @ColumnDefault("false")
     private boolean locked;
 
+
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable( name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable( name = "employee_role",
+            joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> authorities;
 
