@@ -1,6 +1,7 @@
 package viv.hostel.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -18,6 +19,7 @@ import java.util.Collection;
 public class Employee implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
 
     @NotEmpty
@@ -46,6 +48,14 @@ public class Employee implements UserDetails {
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> authorities;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    @JsonIgnore
+    private Department department;
+
+    @OneToMany(mappedBy = "employee")
+    private Collection<Order> orders;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
