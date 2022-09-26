@@ -27,7 +27,9 @@ public class Room {
     private int numberFloor;
 
     @ManyToMany
-    @JoinTable(name = "options_in_room")
+    @JoinTable(name = "option_in_room",
+        joinColumns = @JoinColumn(name = "room_id"),
+        inverseJoinColumns = @JoinColumn(name = "options_room_id"))
     private Set<OptionsRoom> options;
 
 }

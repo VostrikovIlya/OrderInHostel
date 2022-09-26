@@ -42,12 +42,12 @@ public class Employee implements UserDetails {
     @ColumnDefault("false")
     private boolean locked;
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable( name = "employee_role",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> authorities;
+//
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "employee_role",
+//            joinColumns = @JoinColumn(name = "employee_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Collection<Role> authorities;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -59,7 +59,7 @@ public class Employee implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
     @Override
