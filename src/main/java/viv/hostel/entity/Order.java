@@ -32,6 +32,10 @@ public class Order {
     private boolean complete;
 
     @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

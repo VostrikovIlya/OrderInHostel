@@ -21,6 +21,9 @@ public class Department {
     @NotEmpty
     private String name;
 
+    @NotEmpty
+    private String slug;
+
     private String phone;
 
     @OneToMany(mappedBy = "department")
