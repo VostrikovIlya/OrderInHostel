@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class OptionsRoom {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
 

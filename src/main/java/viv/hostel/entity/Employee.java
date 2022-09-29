@@ -18,7 +18,7 @@ import java.util.Collection;
 @Entity
 public class Employee implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
 
@@ -42,7 +42,7 @@ public class Employee implements UserDetails {
     @ColumnDefault("false")
     private boolean locked;
 
-//
+
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "employee_role",
 //            joinColumns = @JoinColumn(name = "employee_id"),

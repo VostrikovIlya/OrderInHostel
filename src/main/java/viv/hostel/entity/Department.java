@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Setter
@@ -14,7 +15,7 @@ import java.util.Set;
 @Entity
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
 
@@ -24,6 +25,7 @@ public class Department {
     @NotEmpty
     private String slug;
 
+    @Size(min = 6, max = 11)
     private String phone;
 
     @OneToMany(mappedBy = "department")
