@@ -43,11 +43,11 @@ public class Employee implements UserDetails {
     private boolean locked;
 
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "employee_role",
-//            joinColumns = @JoinColumn(name = "employee_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Collection<Role> authorities;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "employee_role",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> authorities;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
