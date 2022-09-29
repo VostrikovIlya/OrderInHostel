@@ -33,6 +33,7 @@ public class User implements UserDetails {
 
     @NotEmpty
     @Size(min = 8)
+    @JsonIgnore
     private String password;
 
     private String firstName;
@@ -49,9 +50,11 @@ public class User implements UserDetails {
     private String phone;
 
     @ColumnDefault("true")
+    @JsonIgnore
     private boolean enabled;
 
     @ColumnDefault("false")
+    @JsonIgnore
     private boolean locked;
 
     @ManyToMany(fetch = FetchType.EAGER)
