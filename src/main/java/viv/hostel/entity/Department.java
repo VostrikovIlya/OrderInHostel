@@ -2,8 +2,10 @@ package viv.hostel.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
+import viv.hostel.serializer.DepartSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
+@JsonSerialize(using = DepartSerializer.class)
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
