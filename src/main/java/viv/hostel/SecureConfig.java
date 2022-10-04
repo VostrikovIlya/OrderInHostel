@@ -21,7 +21,7 @@ public class SecureConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/api/order/*").permitAll()
+                                .antMatchers("/api/order/*", "/api/depart/*").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults());
