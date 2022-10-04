@@ -49,7 +49,7 @@ public class Employee implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> authorities;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     @JsonIgnore
     private Department department;
@@ -59,7 +59,7 @@ public class Employee implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override

@@ -28,6 +28,6 @@ public class Department {
     @Size(min = 6, max = 11)
     private String phone;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private Set<Employee> employees;
 }
