@@ -35,6 +35,8 @@ public class OrderSerializer extends StdSerializer<Order> {
         json.writeStringField("user", order.getUser().getFirstName() + " " + order.getUser().getLastName());
         if(order.getEmployee() != null)
             json.writeStringField("employee", order.getEmployee().getFirstName() + " " + order.getEmployee().getLastName());
+        else
+            json.writeStringField("employee", "no appointment");
         json.writeEndObject();
     }
 }
