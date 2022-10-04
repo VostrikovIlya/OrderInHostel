@@ -1,9 +1,12 @@
 package viv.hostel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import viv.hostel.serializer.OrderSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +16,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "orders")
+@JsonSerialize(using = OrderSerializer.class)
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
