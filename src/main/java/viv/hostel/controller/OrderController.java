@@ -32,4 +32,9 @@ public class OrderController {
     public List<Order> getOrderByDepartment(@PathVariable String departmentSlug) {
         return orderService.getByDepartment(departmentSlug);
     }
+
+    @PostMapping("/new")
+    public Order addOrder(@RequestBody Order order, @RequestBody String username) {
+        return orderService.save(order, username);
+    }
 }
