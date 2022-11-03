@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.UniqueElements;
 import viv.hostel.serializer.OrderSerializer;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Order {
     private Long id;
 
     @NotEmpty
+    @UniqueElements
     private String name;
 
     private String description;

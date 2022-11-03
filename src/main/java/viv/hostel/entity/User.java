@@ -32,7 +32,7 @@ public class User implements UserDetails {
     private String username;
 
     @NotEmpty
-    @Size(min = 8)
+    @Size(min = 128)
     @JsonIgnore
     private String password;
 
@@ -62,6 +62,10 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> authorities;
+
+    public void addAuthorities(Role role) {
+        authorities.add(role);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

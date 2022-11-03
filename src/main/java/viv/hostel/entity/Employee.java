@@ -4,6 +4,7 @@ package viv.hostel.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +16,9 @@ import java.util.Collection;
 
 @Setter
 @Getter
+@ToString
 @Entity
+@Table(name = "employee")
 public class Employee implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +30,8 @@ public class Employee implements UserDetails {
     private String username;
 
     @NotEmpty
-    @Size(min = 8)
+    @Size(min = 128)
+    @JsonIgnore
     private String password;
 
     private String firstName;
@@ -56,6 +60,10 @@ public class Employee implements UserDetails {
 
     @OneToMany(mappedBy = "employee")
     private Collection<Order> orders;
+
+    public void addAuthorities(Role role) {
+        authorities.add(role);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
