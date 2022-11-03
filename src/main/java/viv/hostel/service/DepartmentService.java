@@ -2,6 +2,7 @@ package viv.hostel.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import viv.hostel.exception.NotFoundException;
 import viv.hostel.entity.Department;
 import viv.hostel.repository.DepartmentRepo;
 
@@ -23,7 +24,11 @@ public class DepartmentService {
     }
 
     public Department getBySlug(String slug) {
-        return departmentRepo.findBySlug(slug).orElseThrow(()->new RuntimeException("NO"));
+        return departmentRepo.findBySlug(slug).orElseThrow(()->new NotFoundException("Not found department: " + slug));
     }
 
+    public Department saveDepartment(Department department) {
+        Optional<Department> depart = departmentRepo.findBySlug(department.getSlug());
+        return depart.orElseGet(() -> departmentRepo.save(department));
+    }
 }

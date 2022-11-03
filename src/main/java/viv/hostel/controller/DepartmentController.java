@@ -1,10 +1,7 @@
 package viv.hostel.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import viv.hostel.entity.Department;
 import viv.hostel.service.DepartmentService;
 
@@ -21,7 +18,7 @@ public class DepartmentController {
         return departmentService.getAllDepartments();
     }
 
-    @GetMapping("/all-slugs")
+    @GetMapping("/slugs")
     public List<String> getAllSlugs() {
         return departmentService.getAllSlugs();
     }
@@ -29,5 +26,10 @@ public class DepartmentController {
     @GetMapping("/{slug}")
     public Department getDepartmentBySlug(@PathVariable String slug) {
         return departmentService.getBySlug(slug);
+    }
+
+    @PostMapping("/save")
+    public Department saveDepartment(@RequestBody Department department) {
+        return departmentService.saveDepartment(department);
     }
 }
